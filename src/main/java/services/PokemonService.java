@@ -28,6 +28,15 @@ public class PokemonService {
                         .findOnly());
     }
 
+    public int addAllPokemonToDB(List<PokemonResponseModel> allPokemon) {
+        int rowsInserted = 0;
+        for (PokemonResponseModel pokemon : allPokemon) {
+            addPokemonToDB(pokemon);
+            rowsInserted++;
+        }
+        return rowsInserted;
+    }
+
     public void addPokemonToDB(PokemonResponseModel pokemon) {
         jdbi.withHandle(handle ->
                 handle.createUpdate(
@@ -40,8 +49,16 @@ public class PokemonService {
                         .bind("height", pokemon.getHeight())
                         .bind("weight", pokemon.getWeight())
                         .bind("type1", pokemon.getTypes()[0].getType().getName())
-                        .bind("type2", pokemon.getTypes()[1].getType().getName())
+                        .bind("type2", getSecondTypeIfAvailable(pokemon))
                         .execute()
         );
+    }
+
+    public String getSecondTypeIfAvailable(PokemonResponseModel pokemon) {
+        if (pokemon.getTypes().length == 2) {
+            return pokemon.getTypes()[1].getType().getName();
+        } else {
+            return null;
+        }
     }
 }

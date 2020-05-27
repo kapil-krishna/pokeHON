@@ -11,18 +11,27 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class PokeAPIService {
 
-//    public List<PokemonResponseModel> getAllPokemon(int limit) {
-//
-//        for (int i = 0; i < limit; i++) {
-//
-//        }
-//    }
+    public List<PokemonResponseModel> getAllPokemonFromApi(int limit) {
+        List<PokemonResponseModel> allPokemon = new ArrayList<>();
+
+        for (int i = 1; i < limit; i++) {
+            PokemonResponseModel pokemon = getPokemonFromApi(i);
+            if (pokemon != null) {
+                allPokemon.add(pokemon);
+            } else {
+                i = limit - 1;
+            }
+        }
+
+        return allPokemon;
+    }
 
     public PokemonResponseModel getPokemonFromApi(int id) {
         String uri = "https://pokeapi.co/api/v2/pokemon/" + id;

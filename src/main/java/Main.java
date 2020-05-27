@@ -1,3 +1,4 @@
+import controllers.PokemonController;
 import models.db.PokemonDBModel;
 import models.pokeAPI.PokemonResponseModel;
 import services.PokeAPIService;
@@ -8,11 +9,17 @@ import java.util.List;
 public class Main {
 
     public static void main (String[] args) {
-        PokeAPIService pokeAPIService = new PokeAPIService();
         PokemonService pokemonService = new PokemonService();
+        PokeAPIService pokeAPIService = new PokeAPIService();
+        PokemonController pokemonController = new PokemonController(pokemonService, pokeAPIService);
 
-        PokemonResponseModel bulbasaur = pokeAPIService.getPokemonFromApi(1);
+        pokemonController.fetchPokemonData(5);
 
-        pokemonService.addPokemonToDB(bulbasaur);
+//        PokeAPIService pokeAPIService = new PokeAPIService();
+//
+//        PokemonResponseModel pokemon = pokeAPIService.getPokemonFromApi(1);
+//
+//        System.out.println(pokemon.getName());
+
     }
 }
