@@ -1,9 +1,11 @@
 package services;
 
 import org.jdbi.v3.core.Jdbi;
+import org.springframework.stereotype.Service;
 
 import java.util.Properties;
 
+@Service
 public class DatabaseService {
 
     public Jdbi createJdbiConnection() {
@@ -13,8 +15,8 @@ public class DatabaseService {
 
             String url = "jdbc:postgresql://" + hostname + ":" + port + "/" + databaseName;
             Properties props = new Properties();
-            props.setProperty("user", "postgres");
-            props.setProperty("password", "8xExhIZnASYEgXpdYa5G");
+            props.setProperty("user", System.getenv("USERNAME"));
+            props.setProperty("password", System.getenv("PASSWORD"));
 
             return Jdbi.create(url, props);
     }

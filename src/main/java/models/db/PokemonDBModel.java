@@ -2,12 +2,13 @@ package models.db;
 
 public class PokemonDBModel {
 
-    int id;
-    String name;
-    String imageURL;
-    String[] type;
-    int height;
-    int weight;
+    private int id;
+    private String name;
+    private String imageURL;
+    private int height;
+    private int weight;
+    private String type1;
+    private String type2;
 
     public int getId() {
         return id;
@@ -33,14 +34,6 @@ public class PokemonDBModel {
         this.imageURL = imageURL;
     }
 
-    public String[] getType() {
-        return type;
-    }
-
-    public void setType(String[] type) {
-        this.type = type;
-    }
-
     public int getHeight() {
         return height;
     }
@@ -55,5 +48,21 @@ public class PokemonDBModel {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public String getType1() {
+        return type1;
+    }
+
+    public void setType1(String type1) {
+        this.type1 = type1;
+    }
+
+    public String getType2() {
+        return type2;
+    }
+
+    public void setType2(String type2) {
+        this.type2 = type2;
     }
 }
