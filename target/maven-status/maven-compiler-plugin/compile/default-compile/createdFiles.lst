@@ -1,4 +1,4 @@
-models\db\PokemonDBModel.class
 Main.class
+models\db\PokemonDBModel.class
 services\DatabaseService.class
 services\PokemonService.class
