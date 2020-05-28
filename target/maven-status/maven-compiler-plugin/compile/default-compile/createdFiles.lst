@@ -1,4 +1,12 @@
-Main.class
-models\db\PokemonDBModel.class
-services\DatabaseService.class
-services\PokemonService.class
+com\pokehon\models\pokeAPI\TypeObjectResponseModel.class
+com\pokehon\PokemonController.class
+com\pokehon\models\db\PokemonDBModel.class
+com\pokehon\models\pokeAPI\PokemonResponseModel.class
+com\pokehon\PokemonService.class
+com\pokehon\models\view\AllPokemonViewModel.class
+com\pokehon\models\view\PokemonViewModel.class
+com\pokehon\PokeAPIService.class
+com\pokehon\models\pokeAPI\TypeResponseModel.class
+com\pokehon\Main.class
+com\pokehon\models\pokeAPI\SpritesResponseModel.class
+com\pokehon\DatabaseService.class
