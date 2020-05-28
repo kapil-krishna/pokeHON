@@ -1,4 +1,4 @@
-package models.db;
+package com.pokehon.models.db;
 
 public class PokemonDBModel {
 

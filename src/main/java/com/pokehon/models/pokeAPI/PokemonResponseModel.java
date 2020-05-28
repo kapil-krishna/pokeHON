@@ -1,8 +1,6 @@
-package models.pokeAPI;
+package com.pokehon.models.pokeAPI;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PokemonResponseModel {

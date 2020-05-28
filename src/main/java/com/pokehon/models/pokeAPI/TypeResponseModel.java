@@ -1,4 +1,4 @@
-package models.pokeAPI;
+package com.pokehon.models.pokeAPI;
 
 public class TypeResponseModel {
 

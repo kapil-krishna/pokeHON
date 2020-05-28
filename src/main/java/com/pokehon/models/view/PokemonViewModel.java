@@ -1,6 +1,6 @@
-package models.view;
+package com.pokehon.models.view;
 
-import models.db.PokemonDBModel;
+import com.pokehon.models.db.PokemonDBModel;
 
 public class PokemonViewModel {
     private final PokemonDBModel pokemonDBModel;
