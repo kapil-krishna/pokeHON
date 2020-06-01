@@ -1,4 +1,4 @@
-package com.pokehon;
+package com.pokehon.services;
 
 import org.jdbi.v3.core.Jdbi;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.pokehon;
+package com.pokehon.services;
 
 import com.pokehon.models.db.PokemonDBModel;
 import com.pokehon.models.pokeAPI.PokemonResponseModel;
@@ -6,6 +6,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PokemonService {
@@ -39,10 +40,13 @@ public class PokemonService {
     public void addPokemonToDB(PokemonResponseModel pokemon) {
         jdbi.withHandle(handle ->
                 handle.createUpdate(
-                        "INSERT INTO pokemon " +
+                        "SELECT setval(pg_get_serial_sequence('pokemon', 'id'), coalesce(max(id),0) + 1, false) FROM pokemon;" +
+                                "INSERT INTO pokemon " +
                                 "(name, \"imageURL\", height, weight, type1, type2) " +
                                 "VALUES " +
-                                "(:name, :imageURL, :height, :weight, :type1, :type2)")
+                                "(:name, :imageURL, :height, :weight, :type1, :type2)" +
+                                "ON CONFLICT (name)" +
+                                "DO NOTHING;")
                         .bind("name", pokemon.getName())
                         .bind("imageURL", pokemon.getSprites().getFront_default())
                         .bind("height", pokemon.getHeight())
@@ -59,5 +63,12 @@ public class PokemonService {
         } else {
             return null;
         }
+    }
+
+    public int getNumberOfPokemon() {
+        return jdbi.withHandle(handle ->
+                        handle.createQuery("SELECT COUNT(*) FROM pokemon")
+                .mapTo(Integer.class)
+                .findOnly());
     }
 }
