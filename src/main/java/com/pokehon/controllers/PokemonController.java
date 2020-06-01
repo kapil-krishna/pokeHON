@@ -7,9 +7,7 @@ import com.pokehon.models.pokeAPI.PokemonResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -17,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/pokemon")
 public class PokemonController {
 
@@ -54,14 +53,14 @@ public class PokemonController {
 
     }
 
-    @RequestMapping(value = "/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity getPokemonById(@PathVariable int id) {
         PokemonDBModel pokemon = pokemonService.getPokemon(id);
         return ResponseEntity.ok().body(pokemon);
     }
 
-    @RequestMapping(value = "/noOfPokemon")
+    @RequestMapping(value = "/noOfPokemon", method = RequestMethod.GET)
     @ResponseBody
     public int getNumberOfPokemonInDB() {
         return pokemonService.getNumberOfPokemon();
